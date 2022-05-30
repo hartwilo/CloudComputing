@@ -13,7 +13,7 @@ public class UserControllerTest {
 
         String user = System.getProperty("user.name");
 
-        assertEquals("Lorenz", user);
+        assertEquals("runner", user);
 
 	}
 
