@@ -61,7 +61,7 @@ jobs:
 
   Failed_Notification:
     runs-on: ubuntu-latest
-    if: job.status == failure
+    if: build == Failed || test == Failed || SonarCloud-Analysis == Failed
     steps:
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
