@@ -83,7 +83,8 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Result of latest run. ${{github.job}} jon in workflow ${{ github.workflow }} has ${{ job.status }}
+          body: Result of latest run. ${{github.job}} job in workflow ${{ github.workflow }} has ${{ job.status }}
+                https://sonarcloud.io/dashboard?id=hartwilo_CloudComputing&branch=main
           # Optional unsigned/invalid certificates allowance:
           ignore_cert: true
           # Optional converting Markdown to HTML (set content_type to text/html too):
