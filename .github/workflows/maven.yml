@@ -9,6 +9,13 @@ on:
   pull_request:
     branches: [ main ]
 
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: cloudcomputing-cluster
+  GKE_ZONE: us-central1-a
+  DEPLOYMENT_NAME: gke-hello-user
+
 jobs:
   build:
 
@@ -59,9 +66,49 @@ jobs:
             -Dsonar.projectKey=hartwilo_CloudComputing
             -Dsonar.organization=hartwilo
 
-  Notification:
+  Deploy:
     runs-on: ubuntu-latest
     needs: [test, SonarCloud-Analysis]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+          project_id: ${{secrets.GKE_PROJECT}}
+
+       # Configure Docker to use the gcloud command-line tool as a credential
+      # helper for authentication
+      - run: |-
+          gcloud --quiet auth configure-docker
+
+      # Get the GKE credentials so we can deploy to the cluster
+      - uses: 'google-github-actions/get-gke-credentials@v0'
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+          credentials: ${{ secrets.GKE_SA_KEY }}
+
+      # Build the Docker image
+      - name: Build
+        run: |-
+          docker build \
+            --tag "gcr.io/${PROJECT_ID}/$IMAGE:${{ steps.vars.outputs.docker_tag }}"
+
+      # Push the Docker image to Google Container Registry
+      - name: Publish
+        run: |-
+          docker push "gcr.io/$PROJECT_ID/${IMAGE}:$GITHUB_SHA"
+
+      # Deploy Image to the GKE cluster
+
+      
+
+  Notification:
+    runs-on: ubuntu-latest
+    needs: [Deploy]
     steps:
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
