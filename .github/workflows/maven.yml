@@ -32,14 +32,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    # Cache Target
     - name: List directory items BEFORE
       run: |
         ls -la
 
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    # Cache Target
     - name: List target directory items AFTER
       run: |
         ls -la
