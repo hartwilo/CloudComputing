@@ -34,6 +34,10 @@ jobs:
       run: mvn -B package --file pom.xml
 
     # Cache Target
+    - name: List directory items BEFORE
+      run: |
+        ls -la
+
     - name: List target directory items AFTER
       run: |
         ls -la
