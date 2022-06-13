@@ -103,6 +103,10 @@ jobs:
           name: target-directory
           path: target
 
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: target
+
       - name: List target directory items AFTER
         run: |
           ls -la
