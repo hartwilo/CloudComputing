@@ -14,7 +14,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: cloudcomputing-cluster
   GKE_ZONE: us-central1-a
-  DEPLOYMENT_NAME: gke-hello-user
+  DEPLOYMENT_NAME: cloud-computing
   IMAGE: static-site
 
 jobs:
