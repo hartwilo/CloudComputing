@@ -18,7 +18,7 @@ spec:
         app: cloud-computing
     spec:
       containers:
-      - name: helloUser-app
+      - name: hello-user-app
         image: gcr.io/PROJECT_ID/IMAGE:TAG
         ports:
         - containerPort: 8080
