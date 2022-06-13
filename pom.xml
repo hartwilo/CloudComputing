@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.hft.stuttgart.de</groupId>
-	<artifactId>PVL</artifactId>
+	<artifactId>cloud-computing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HelloUser</name>
 	<description>Service for Cloud Computing</description>

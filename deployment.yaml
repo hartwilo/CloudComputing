@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: PVL
+  name: cloud-computing
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: PVL
+      app: cloud-computing
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: PVL
+        app: cloud-computing
     spec:
       containers:
       - name: helloUser-app
