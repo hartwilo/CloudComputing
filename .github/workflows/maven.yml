@@ -34,6 +34,12 @@ jobs:
       run: mvn -B package --file pom.xml
 
     # Cache Target
+    - name: List target directory items AFTER
+      run: |
+        ls -la
+        cd target
+        ls -la
+
     - name: Cache Target
       uses: actions/upload-artifact@v3
       with:
@@ -81,7 +87,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Download Target Directory
+      #Download Target
+      - name: Download Target
         uses: actions/download-artifact@v3
         with:
           name: target-directory
