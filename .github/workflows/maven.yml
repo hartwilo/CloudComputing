@@ -84,25 +84,11 @@ jobs:
 
       #Download Target
 
-      - name: List directory items BEFORE
-        run: |
-          ls -la
-
       - name: Download Target
         uses: actions/download-artifact@v3
         with:
           name: target-directory
           path: target
-
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: target
-
-      - name: List target directory items AFTER
-        run: |
-          ls -la
-          cd target
-          ls -la
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
