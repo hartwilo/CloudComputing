@@ -11,9 +11,11 @@ public class UserControllerTest {
     @Test
 	void getCurrentUserTest() {
 
-        String user = System.getProperty("user.name");
+        UserController userController = new UserController();
 
-        assertEquals("runner", user);
+        String greeting = userController.helloWorld();
+
+        assertEquals("Hello World!", greeting);
 
 	}
 

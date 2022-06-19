@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public String getCurrentUser(){
-        String user = System.getProperty("user.name");
-        return "Hello " + user + "!";
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public String helloWorld(){
+        return "Hello World!";
     }
 
 
