@@ -35,11 +35,20 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Build with Maven
+      run: mvn -B test
+
+    - name: Generate JaCoCo Badge
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        generate-branches-badge: true
+
     - name: Cache Target
       uses: actions/upload-artifact@v3
       with:
         name: target-directory
         path: target
+
       
   test:
   
@@ -162,7 +171,7 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           #secure: false
           # Optional plain body:
-          body: "Hello,\n\nAn update was commited to CloudComputing-Pipeline!\nResult of latest run '${{github.run_id}}' initiated by ${{github.actor}}: \n${{ github.event.head_commit.message }}\n     - ${{ github.workflow }} pipeline run was ${{ job.status }} \nYou can find the latest Sonar Cloud report under https://sonarcloud.io/dashboard?id=hartwilo_CloudComputing&branch=main"
+          body: "Hello,\n\nAn update was commited to CloudComputing-Pipeline!\nResult of latest run '${{github.run_id}}' initiated by ${{github.actor}}: \n'${{ github.event.head_commit.message }}'\n     - ${{ github.workflow }} pipeline run was ${{ job.status }} \nYou can find the latest Sonar Cloud report under https://sonarcloud.io/dashboard?id=hartwilo_CloudComputing&branch=main"
           # Optional unsigned/invalid certificates allowance:
           ignore_cert: true
           # Optional converting Markdown to HTML (set content_type to text/html too):
