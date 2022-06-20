@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: cloud-computing
 spec:
-  replicas: 2
+  replicas: 10
   selector:
     matchLabels:
       app: cloud-computing
