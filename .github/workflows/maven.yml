@@ -40,6 +40,8 @@ jobs:
 
     - name: Generate JaCoCo Badge
       uses: cicirello/jacoco-badge-generator@v2
+      with:
+        jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
 
     - name: Cache Target
       uses: actions/upload-artifact@v3
